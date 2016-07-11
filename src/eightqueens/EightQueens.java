@@ -16,7 +16,7 @@ public class EightQueens {
     private int restarts = 0;
     private int moves = 0;
     private boolean newMap = true;
-    private int neighbors = 0;
+    private int neighbors = 8;
     
     
     public EightQueens( ){ //initializes the map
@@ -39,9 +39,6 @@ public class EightQueens {
                 }
             }
       heuristic = heuristic(map);
-      if(newMap == false){
-        System.out.println("RESTART");
-      }
     }
     
     //***************************Heuristic****************************//
@@ -166,6 +163,7 @@ public class EightQueens {
                     }
                 }
                 randomizeMap( );
+                System.out.println("RESTART");
                 restarts++;
             }
         
