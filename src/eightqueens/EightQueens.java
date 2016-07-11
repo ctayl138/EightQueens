@@ -38,12 +38,10 @@ public class EightQueens {
                 queenLocs++;
                 }
             }
-      
       heuristic = heuristic(map);
       if(newMap == false){
         System.out.println("RESTART");
       }
-      
     }
     
     //***************************Heuristic****************************//
@@ -57,28 +55,22 @@ public class EightQueens {
                 count++;
             }
         }
-        
         if(count > 1){
             exFound = true;
         }
-        
         return exFound;
     }
-    
     public boolean findColEx(int [][] test, int j){ //determines column conflicts
         boolean exFound = false;
         int count = 0;
-        
         for(int i = 0; i < 8; i++){
             if(test[j][i] == 1){
                 count++;
             }
         }
-        
         if(count > 1){
           exFound = true;
         }
-        
         return exFound;
     }
     
@@ -111,12 +103,10 @@ public class EightQueens {
                 }
             }    
         }
-        
         return diaFound;
     }
     
     public int heuristic(int [][] test){//Counts the number of queens in conflict
-        
     int count = 0;
     boolean rowEx;
     boolean colEx;
@@ -137,9 +127,7 @@ public class EightQueens {
         }
         return count;
     }
-    
     //***********************Move Queen***********************//
-    
     public void moveQueen( ){ //moves a queen and determines whether to continue to a new state or restart or to summarize solution
         int[][] hArray = new int[8][8];
         int colCount;
@@ -155,24 +143,18 @@ public class EightQueens {
             for(int i = 0; i < 8; i++){
                 System.arraycopy(map[i], 0, testMap[i], 0, 8);
             }
-        
             while(colCount < 8){
-            
                 for(int i = 0; i < 8;i++){
                     testMap[i][colCount] = 0;
                 }
-            
                 for(int i = 0; i < 8; i++){
                     if(map[i][colCount] == 1){
                         prevColQueen = i;
                     }
-
                     testMap[i][colCount] = 1;
                     hArray[i][colCount] = heuristic(testMap);
                     testMap[i][colCount] = 0;
-
                 }
-
                 testMap[prevColQueen][colCount] = 1;
                 colCount++;
             }
@@ -212,7 +194,7 @@ public class EightQueens {
             System.out.println("Restarts: " + restarts);
             break;
             }
-            
+ 
             System.out.println("\n");
             System.out.println("Current h: " + heuristic);
             System.out.println("Current State");
@@ -226,7 +208,6 @@ public class EightQueens {
             System.out.println("Setting new current State");
         }
     }
-    
     public int findMinCol(int[][] test){ //finds column of minimum neighbor state
         int minCol = 8;
         int minVal = 8;
@@ -246,7 +227,6 @@ public class EightQueens {
         neighbors = count;
         return minCol;
     }
-    
     public int findMinRow(int[][] test){ //finds row of minimum neighbor state
         int minRow = 8;
         int minVal = 8;
@@ -261,7 +241,6 @@ public class EightQueens {
         }
         return minRow;
     }
-    
     public boolean determineRestart(int [][] test){// determines whether restart is necessary
         int minVal = 8;
         boolean restart = false;
@@ -276,43 +255,9 @@ public class EightQueens {
         if(neighbors == 0){
             restart = true;
         }
-        
         return restart;
     }
-    
-    public boolean determineSolution(int [][] test){ // determines if a solution has been found
-        int minVal = 0;
-        boolean solution = false;
-        
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++){
-                if(test[i][j] < minVal){
-                    minVal = test[i][j];
-                }
-            }
-        }
-        
-        if(minVal == 0){
-            solution = true;
-        }
-        
-        return solution;
-    }
-
-    
-    /***********************Getters**********************/
-    
-    
-    public int getRestarts() {
-        return restarts;
-    }
-
-    public int getMoves() {
-        return moves;
-    }
-    
     /************************* Main **********************/
-    
     public static void main(String[] args) {// creates object, creates initial random map, then initiates state change
      EightQueens one = new EightQueens( );
      one.randomizeMap();
