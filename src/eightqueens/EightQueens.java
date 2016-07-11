@@ -134,10 +134,9 @@ public class EightQueens {
         int minCol;
         int minRow;
         int prevColQueen = 0;
-        boolean noSolution = true;
         newMap = false;
         
-        while(noSolution){
+        while(true){
             colCount = 0;
         
             for(int i = 0; i < 8; i++){
